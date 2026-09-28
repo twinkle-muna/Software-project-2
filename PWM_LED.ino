@@ -1,7 +1,7 @@
 const int LED_PIN = 7;
 
-int pwm_period = 1000;  // мкс
-int pwm_duty   = 0;     // %
+int pwm_period = 1000; 
+int pwm_duty   = 0;   
 
 void set_period(int period) {
   pwm_period = constrain(period, 100, 10000);
@@ -16,11 +16,11 @@ void pwm_cycle() {
   long off_time = pwm_period - on_time;
 
   if (on_time > 0) {
-    digitalWrite(LED_PIN, LOW);   // LOW = led is turned on
+    digitalWrite(LED_PIN, LOW);  
     delayMicroseconds(on_time);
   }
   if (off_time > 0) {
-    digitalWrite(LED_PIN, HIGH);  // HIGH = led is turned off
+    digitalWrite(LED_PIN, HIGH); 
     delayMicroseconds(off_time);
   }
 }
@@ -31,9 +31,9 @@ void setup() {
 }
 
 void loop() {
-  int phase = millis() % 1000;   // 0..999 мс inside mls
+  int phase = millis() % 1000;  
   int duty;
-  if (phase < 500) duty = phase / 5;           // 0 -> 100
-  else             duty = (1000 - phase) / 5;  // 100 -> 0
+  if (phase < 500) duty = phase / 5;         
+  else             duty = (1000 - phase) / 5; 
   set_duty(duty);
   pwm_cycle();
